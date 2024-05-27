@@ -1,0 +1,35 @@
+{
+	"schemaVersion": 1,
+	"id": "dont-attack-my-friends",
+	"version": "${version}",
+	"name": "Don't Attack My friends!",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"I-No-oNe"
+	],
+	"contact": {
+		"homepage": "https://i-no-one.github.io/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/dont-attack-my-friends/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"client": [
+			"net.i_no_am.damf.DontAttackMyFriends"
+		],
+		"main": []
+	},
+	"mixins": [
+		"dont-attack-my-friends.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.20.6",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

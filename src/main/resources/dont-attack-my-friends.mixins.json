@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "net.i_no_am.damf.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "MixinPlayerEntity"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}
