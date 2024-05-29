@@ -3,22 +3,24 @@
 	"id": "dont-attack-my-friends",
 	"version": "${version}",
 	"name": "Don't Attack My friends!",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Mod that let u control which players u can attach and which not!",
 	"authors": [
 		"I-No-oNe"
 	],
 	"contact": {
 		"homepage": "https://i-no-one.github.io/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/I-No-oNe/"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/dont-attack-my-friends/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"client": [
-			"net.i_no_am.damf.DontAttackMyFriends"
+			"net.i_no_am.damf.client.dmfaClient"
 		],
-		"main": []
+		"main": [
+			"net.i_no_am.damf.DontAttackMyFriends"
+		]
 	},
 	"mixins": [
 		"dont-attack-my-friends.mixins.json"

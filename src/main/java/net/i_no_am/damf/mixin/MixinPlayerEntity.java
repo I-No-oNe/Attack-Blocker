@@ -1,6 +1,7 @@
 package net.i_no_am.damf.mixin;
 
-import net.i_no_am.damf.config.ModConfig;
+import net.i_no_am.damf.config.Configuration;
+import net.i_no_am.damf.utils.Utils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,8 +25,8 @@ public abstract class MixinPlayerEntity extends LivingEntity {
 	private void onAttack(Entity target, CallbackInfo ci) {
 		PlayerEntity attacker = (PlayerEntity) (Object) this;
 		if (target instanceof PlayerEntity targetPlayer) {
-			if (ModConfig.getInstance().isEnabled()) {
-				if (!CantAttackCommand.canAttack(attacker, targetPlayer)) {
+			if (Configuration.isEnabled()) {
+				if (!Utils.canAttack(attacker, targetPlayer)) {
 					ci.cancel();
 				}
 			}
