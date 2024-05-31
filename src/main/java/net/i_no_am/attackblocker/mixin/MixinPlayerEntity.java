@@ -1,7 +1,7 @@
-package net.i_no_am.damf.mixin;
+package net.i_no_am.attackblocker.mixin;
 
-import net.i_no_am.damf.config.Configuration;
-import net.i_no_am.damf.utils.Utils;
+import net.i_no_am.attackblocker.config.Configuration;
+import net.i_no_am.attackblocker.utils.Utils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -10,8 +10,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import net.i_no_am.damf.command.CantAttackCommand;
 
 @Mixin(PlayerEntity.class)
 public abstract class MixinPlayerEntity extends LivingEntity {

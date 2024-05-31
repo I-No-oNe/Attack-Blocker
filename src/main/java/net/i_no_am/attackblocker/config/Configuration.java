@@ -1,4 +1,4 @@
-package net.i_no_am.damf.config;
+package net.i_no_am.attackblocker.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -13,17 +13,22 @@ import java.util.Set;
 
 public class Configuration {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private static final File CONFIG_DIR = new File(FabricLoader.getInstance().getConfigDirectory(), "damf");
-    private static final File CONFIG_FILE = new File(CONFIG_DIR, "dont_attack_my_friends.json");
+    private static final File CONFIG_DIR = new File(FabricLoader.getInstance().getConfigDirectory(), "attack-blocker");
+    private static final File CONFIG_FILE = new File(CONFIG_DIR, "attack-blocker.json");
 
-    private static boolean enabled = true;
-    private static final Set<String> blockedPlayers = new HashSet<>();
+    private boolean enabled = true;
+    private Set<String> blockedPlayers = new HashSet<>();
+
+    private static Configuration instance = new Configuration();
 
     static {
         loadConfig();
     }
 
     private Configuration() {}
+
+    public static void getInstance() {
+    }
 
     private static void loadConfig() {
         try {
@@ -32,10 +37,10 @@ public class Configuration {
             }
             if (CONFIG_FILE.exists()) {
                 try (FileReader reader = new FileReader(CONFIG_FILE)) {
-                    Configuration config = GSON.fromJson(reader, Configuration.class);
-                    enabled = config.enabled;
-                    blockedPlayers.clear();
-                    blockedPlayers.addAll(config.blockedPlayers);
+                    instance = GSON.fromJson(reader, Configuration.class);
+                    if (instance.blockedPlayers == null) {
+                        instance.blockedPlayers = new HashSet<>();
+                    }
                 }
             } else {
                 saveConfig();
@@ -51,7 +56,7 @@ public class Configuration {
                 CONFIG_DIR.mkdirs();
             }
             try (FileWriter writer = new FileWriter(CONFIG_FILE)) {
-                GSON.toJson(new Configuration(), writer);
+                GSON.toJson(instance, writer);
             }
         } catch (IOException e) {
             e.printStackTrace(); // Handle properly
@@ -59,25 +64,25 @@ public class Configuration {
     }
 
     public static boolean isEnabled() {
-        return enabled;
+        return instance.enabled;
     }
 
     public static void setEnabled(boolean enabled) {
-        Configuration.enabled = enabled;
+        instance.enabled = enabled;
         saveConfig();
     }
 
     public static Set<String> getBlockedPlayers() {
-        return blockedPlayers;
+        return instance.blockedPlayers;
     }
 
     public static void blockPlayer(String playerName) {
-        blockedPlayers.add(playerName);
+        instance.blockedPlayers.add(playerName);
         saveConfig();
     }
 
     public static void unblockPlayer(String playerName) {
-        blockedPlayers.remove(playerName);
+        instance.blockedPlayers.remove(playerName);
         saveConfig();
     }
 }

@@ -1,29 +1,29 @@
 {
 	"schemaVersion": 1,
-	"id": "dont-attack-my-friends",
+	"id": "attack-blocker",
 	"version": "${version}",
-	"name": "Don't Attack My friends!",
-	"description": "Mod that let u control which players u can attach and which not!",
+	"name": "Attack Blocker!",
+	"description": "Mod that let you control which players you can attach and which not!",
 	"authors": [
 		"I-No-oNe"
 	],
 	"contact": {
 		"homepage": "https://i-no-one.github.io/",
-		"sources": "https://github.com/I-No-oNe/"
+		"sources": "https://github.com/I-No-oNe/Attack-Blocker"
 	},
 	"license": "MIT",
-	"icon": "assets/dont-attack-my-friends/icon.png",
+	"icon": "assets/attack-blocker/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"client": [
-			"net.i_no_am.damf.client.dmfaClient"
+			"net.i_no_am.attackblocker.client.AttackBlockerClient"
 		],
 		"main": [
-			"net.i_no_am.damf.DontAttackMyFriends"
+			"net.i_no_am.attackblocker.AttackBlocker"
 		]
 	},
 	"mixins": [
-		"dont-attack-my-friends.mixins.json"
+		"attack-blocker.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.15.11",

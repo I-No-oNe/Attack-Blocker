@@ -1,13 +1,13 @@
-package net.i_no_am.damf.utils;
+package net.i_no_am.attackblocker.utils;
 
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
-import net.i_no_am.damf.config.Configuration;
+import net.i_no_am.attackblocker.config.Configuration;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 
 public class Utils {
-    public static final String PREFIX = "§7[§4DontAttackMyFriends§7]§r ";
+    public static final String PREFIX = "§7[§4Attack-Blocker§7]§r ";
 
     public static void clientMessage(String message, FabricClientCommandSource source) {
         source.sendFeedback(Text.of(PREFIX + message));

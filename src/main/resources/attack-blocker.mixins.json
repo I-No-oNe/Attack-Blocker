@@ -1,11 +1,13 @@
 {
   "required": true,
-  "package": "net.i_no_am.damf.mixin",
+  "package": "net.i_no_am.attackblocker.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "MixinPlayerEntity"
   ],
   "injectors": {
     "defaultRequire": 1
-	}
+  },
+  "client": [
+  ]
 }
