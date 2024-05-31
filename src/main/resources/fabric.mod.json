@@ -2,8 +2,8 @@
 	"schemaVersion": 1,
 	"id": "attack-blocker",
 	"version": "${version}",
-	"name": "Attack Blocker!",
-	"description": "Mod that let you control which players you can attach and which not!",
+	"name": "Attack Blocker",
+	"description": "A simple mod that let you control which players you can attack and which not",
 	"authors": [
 		"I-No-oNe"
 	],
