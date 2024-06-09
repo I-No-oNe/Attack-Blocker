@@ -22,12 +22,8 @@ public abstract class MixinPlayerEntity extends LivingEntity {
 	@Inject(method = "attack", at = @At("HEAD"), cancellable = true)
 	private void onAttack(Entity target, CallbackInfo ci) {
 		PlayerEntity attacker = (PlayerEntity) (Object) this;
-		if (target instanceof PlayerEntity targetPlayer) {
-			if (Configuration.isEnabled()) {
-				if (!Utils.canAttack(attacker, targetPlayer)) {
+		if (target instanceof PlayerEntity targetPlayer && Configuration.isEnabled() && !Utils.canAttack(attacker, targetPlayer)) {
 					ci.cancel();
 				}
 			}
 		}
-	}
-}
