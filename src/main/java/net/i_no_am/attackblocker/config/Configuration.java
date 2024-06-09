@@ -1,5 +1,3 @@
-// Configuration.java
-
 package net.i_no_am.attackblocker.config;
 
 import com.google.gson.Gson;
