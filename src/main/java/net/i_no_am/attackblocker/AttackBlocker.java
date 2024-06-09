@@ -11,7 +11,3 @@ public class AttackBlocker implements ModInitializer {
 		ClientTickEvents.END_CLIENT_TICK.register(client -> Configuration.getInstance());
 	}
 }
-/* TODO for next version:
-  - make it so lower case won't matter (and vice versa)
-  - Make players who are on the can't attack list glow on red
-   */
