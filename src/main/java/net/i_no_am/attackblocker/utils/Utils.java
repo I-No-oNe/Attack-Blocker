@@ -29,6 +29,12 @@ public class Utils {
         String targetName = target.getName().getString();
         return Configuration.isEnabled() && !Configuration.getBlockedPlayers().contains(targetName);
     }
+    public static SuggestionProvider<FabricClientCommandSource> playersInConfig() {
+        return (context, builder) -> {
+            Configuration.getBlockedPlayers().forEach(builder::suggest);
+            return builder.buildFuture();
+        };
+    }
     public static SuggestionProvider<FabricClientCommandSource> colorSuggestions() {
         return (context, builder) -> {
             for (String color : COLORS) {
