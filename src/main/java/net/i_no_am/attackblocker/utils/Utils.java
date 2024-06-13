@@ -46,4 +46,10 @@ public class Utils {
             return builder.buildFuture();
         };
     }
+    public static SuggestionProvider<FabricClientCommandSource> playersInConfig() {
+        return (context, builder) -> {
+            Configuration.getBlockedPlayers().forEach(builder::suggest);
+            return builder.buildFuture();
+        };
+    }
 }
