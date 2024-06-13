@@ -19,16 +19,20 @@ public class Utils {
     public static void clientMessage(String message, FabricClientCommandSource source) {
         source.sendFeedback(Text.of(PREFIX + message));
     }
+
     public static void clientMessageWithoutPrefix(String message, FabricClientCommandSource source) {
         source.sendFeedback(Text.of(message));
     }
-    public static void playerMessage(String message, ClientPlayNetworkHandler clientPlayNetworkHandler){
+
+    public static void playerMessage(String message, ClientPlayNetworkHandler clientPlayNetworkHandler) {
         clientPlayNetworkHandler.sendChatMessage(message);
     }
+
     public static boolean canAttack(PlayerEntity ignoreattacker, PlayerEntity target) {
         String targetName = target.getName().getString();
         return Configuration.isEnabled() && !Configuration.getBlockedPlayers().contains(targetName);
     }
+
     public static SuggestionProvider<FabricClientCommandSource> colorSuggestions() {
         return (context, builder) -> {
             for (String color : COLORS) {
@@ -37,6 +41,13 @@ public class Utils {
             return builder.buildFuture();
         };
     }
+
+    public static SuggestionProvider<FabricClientCommandSource> playersInConfig() {
+        return (context, builder) -> {
+            Configuration.getBlockedPlayers().forEach(builder::suggest);
+            return builder.buildFuture();
+        };
+}
     public static SuggestionProvider<FabricClientCommandSource> playerNameSuggestions() {
         return (context, builder) -> {
             Objects.requireNonNull(MinecraftClient.getInstance().getNetworkHandler()).getPlayerList().forEach(entry -> {

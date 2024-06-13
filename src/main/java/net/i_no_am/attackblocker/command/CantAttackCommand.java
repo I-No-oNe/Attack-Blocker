@@ -21,12 +21,12 @@
 //                    Removing Players from Can't Attack List
                     .then(ClientCommandManager.literal("remove")
                             .then(ClientCommandManager.argument("player name", StringArgumentType.word())
-                                    .suggests(Utils.playerNameSuggestions())
+                                    .suggests(Utils.playersInConfig())
                                     .executes(context -> removeCantAttack(context.getSource(), StringArgumentType.getString(context, "player name")))))
 //                    Color Command
                     .then(ClientCommandManager.literal("color")
                             .then(ClientCommandManager.argument("player name", StringArgumentType.word())
-                                    .suggests(Utils.playerNameSuggestions())
+                                    .suggests(Utils.playersInConfig())
                                     .then(ClientCommandManager.argument("color", StringArgumentType.word())
                                             .suggests(Utils.colorSuggestions())
                                             .executes(context -> setColor(context.getSource(), StringArgumentType.getString(context, "player name"), StringArgumentType.getString(context, "color"))))))
