@@ -2,14 +2,11 @@
   "required": true,
   "package": "net.i_no_am.attackblocker.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [
-    "MixinPlayerInteractEntityC2SPacket"
-  ],
+  "mixins": [],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
-    "MixinClientPlayerEntity",
     "MixinMinecraftClient",
     "MixinWorldRenderer"
   ]
