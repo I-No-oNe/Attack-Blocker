@@ -1,9 +1,10 @@
-package net.i_no_am.attackblocker.config;
+package net.i_no_am.attack_blocker.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.fabricmc.loader.api.FabricLoader;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -12,25 +13,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class Configuration {
+public class Config {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final File CONFIG_DIR = new File(FabricLoader.getInstance().getConfigDirectory(), "attack-blocker");
     private static final File CONFIG_FILE = new File(CONFIG_DIR, "attack-blocker.json");
 
     private boolean enabled = true;
 
-    // Store color set by command
-    private Map<String, String> playerColors = new HashMap<>();
-
-    private static Configuration instance = new Configuration();
-
-    static {
-        loadConfig();
-    }
-
-    private Configuration() {}
+    private Map<String, String> playerColors;
+    private static Config instance = new Config();
 
     public static void getInstance() {
+        loadConfig();
     }
 
     private static void loadConfig() {
@@ -40,7 +34,7 @@ public class Configuration {
             }
             if (CONFIG_FILE.exists()) {
                 try (FileReader reader = new FileReader(CONFIG_FILE)) {
-                    instance = GSON.fromJson(reader, Configuration.class);
+                    instance = GSON.fromJson(reader, Config.class);
                     if (instance.playerColors == null) {
                         instance.playerColors = new HashMap<>();
                     }
@@ -97,18 +91,18 @@ public class Configuration {
         return instance.playerColors.getOrDefault(playerName, "none");
     }
 
-    public static int[] getRGB(String color) {
+    public static Color getRGBA(String color) {
         return switch (color.toLowerCase()) {
-            case "red" -> new int[]{255, 0, 0, 255};
-            case "green" -> new int[]{0, 255, 0, 255};
-            case "blue" -> new int[]{0, 0, 255, 255};
-            case "yellow" -> new int[]{255, 255, 0, 255};
-            case "white" -> new int[]{255, 255, 255, 255};
-            case "black" -> new int[]{0, 0, 0, 255};
-            case "orange" -> new int[]{255, 165, 0, 255};
-            case "purple" -> new int[]{128, 0, 128, 255};
-            case "cyan" -> new int[]{0, 255, 255, 255};
-            case "none" -> new int[]{0, 0, 0, 0};
+            case "red" -> new Color(255, 0, 0, 255);
+            case "green" -> new Color(0, 255, 0, 255);
+            case "blue" -> new Color(0, 0, 255, 255);
+            case "yellow" -> new Color(255, 255, 0, 255);
+            case "white" -> new Color(255, 255, 255, 255);
+            case "black" -> new Color(0, 0, 0, 255);
+            case "orange" -> new Color(255, 165, 0, 255);
+            case "purple" -> new Color(128, 0, 128, 255);
+            case "cyan" -> new Color(0, 255, 255, 255);
+            case "none" -> new Color(0, 0, 0, 0);
             default -> throw new IllegalStateException("Unexpected value: " + color.toLowerCase());
         };
     }

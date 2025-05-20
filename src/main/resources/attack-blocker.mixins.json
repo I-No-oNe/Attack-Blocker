@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "net.i_no_am.attackblocker.mixin",
+  "package": "net.i_no_am.attack_blocker.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [],
   "injectors": {

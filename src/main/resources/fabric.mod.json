@@ -16,11 +16,9 @@
 	"environment": "*",
 	"entrypoints": {
 		"client": [
-			"net.i_no_am.attackblocker.client.AttackBlockerClient"
+			"net.i_no_am.attack_blocker.client.AttackBlockerClient"
 		],
-		"main": [
-			"net.i_no_am.attackblocker.AttackBlocker"
-		]
+		"main": []
 	},
 	"mixins": [
 		"attack-blocker.mixins.json"

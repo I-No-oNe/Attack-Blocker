@@ -1,8 +1,8 @@
-package net.i_no_am.attackblocker.utils;
+package net.i_no_am.attack_blocker.utils;
 
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
-import net.i_no_am.attackblocker.config.Configuration;
+import net.i_no_am.attack_blocker.config.Config;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,13 +24,14 @@ public class Utils {
         source.sendFeedback(Text.of(message));
     }
 
+    @Deprecated(forRemoval = true)
     public static void playerMessage(String message, ClientPlayNetworkHandler clientPlayNetworkHandler) {
         clientPlayNetworkHandler.sendChatMessage(message);
     }
 
     public static boolean cannotAttack(PlayerEntity target) {
         String targetName = target.getName().getString();
-        return Configuration.getBlockedPlayers().contains(targetName);
+        return Config.getBlockedPlayers().contains(targetName);
     }
 
     public static SuggestionProvider<FabricClientCommandSource> colorSuggestions() {
@@ -44,15 +45,15 @@ public class Utils {
 
     public static SuggestionProvider<FabricClientCommandSource> playersInConfig() {
         return (context, builder) -> {
-            Configuration.getBlockedPlayers().forEach(builder::suggest);
+            Config.getBlockedPlayers().forEach(builder::suggest);
             return builder.buildFuture();
         };
-}
+    }
+
     public static SuggestionProvider<FabricClientCommandSource> playerNameSuggestions() {
         return (context, builder) -> {
             Objects.requireNonNull(MinecraftClient.getInstance().getNetworkHandler()).getPlayerList().forEach(entry -> {
-                String playerName = entry.getProfile().getName();
-                builder.suggest(playerName);
+                builder.suggest(entry.getProfile().getName());
             });
             return builder.buildFuture();
         };
