@@ -8,6 +8,6 @@
   },
   "client": [
     "MixinMinecraftClient",
-    "MixinWorldRenderer"
+    "MixinEntity"
   ]
 }

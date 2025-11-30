@@ -16,7 +16,7 @@
 	"environment": "*",
 	"entrypoints": {
 		"client": [
-			"net.i_no_am.attack_blocker.client.AttackBlockerClient"
+          "net.i_no_am.attack_blocker.AttackBlockerClient"
 		],
 		"main": []
 	},
@@ -24,12 +24,9 @@
 		"attack-blocker.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.15.11",
-		"minecraft": ">=1.21",
+		"fabricloader": "*",
+		"minecraft": ">=1.21.9",
 		"java": ">=21",
 		"fabric-api": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
 	}
 }
