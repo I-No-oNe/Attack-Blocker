@@ -1,32 +1,32 @@
 {
-	"schemaVersion": 1,
-	"id": "attack-blocker",
-	"version": "${version}",
-	"name": "Attack Blocker",
-	"description": "A simple mod that let you control which players you can attack and which not",
-	"authors": [
-		"I-No-oNe"
-	],
-	"contact": {
-		"homepage": "https://i-no-one.github.io/",
-		"sources": "https://github.com/I-No-oNe/Attack-Blocker"
-	},
-	"license": "MIT",
-	"icon": "assets/attack-blocker/icon.png",
-	"environment": "*",
-	"entrypoints": {
-		"client": [
-          "net.i_no_am.attack_blocker.AttackBlockerClient"
-		],
-		"main": []
-	},
-	"mixins": [
-		"attack-blocker.mixins.json"
-	],
-	"depends": {
-		"fabricloader": "*",
-		"minecraft": ">=1.21.9",
-		"java": ">=21",
-		"fabric-api": "*"
-	}
+  "schemaVersion": 1,
+  "id": "attack-blocker",
+  "version": "${version}",
+  "name": "Attack Blocker",
+  "description": "A simple mod that let you control which players you can attack and which not",
+  "authors": [
+    "I-No-oNe"
+  ],
+  "contact": {
+    "homepage": "https://i-no-one.github.io/",
+    "sources": "https://github.com/I-No-oNe/Attack-Blocker"
+  },
+  "license": "MIT",
+  "icon": "assets/attack-blocker/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "net.i_no_am.attack_blocker.AttackBlockerClient"
+    ],
+    "main": []
+  },
+  "mixins": [
+    "attack-blocker.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "\u003e\u003d0.19.2",
+    "minecraft": "~26.1",
+    "java": "\u003e\u003d21",
+    "fabric-api": "*"
+  }
 }

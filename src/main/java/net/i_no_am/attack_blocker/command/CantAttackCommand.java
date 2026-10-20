@@ -3,30 +3,30 @@ package net.i_no_am.attack_blocker.command;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
-import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommands;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.i_no_am.attack_blocker.config.Config;
 import net.i_no_am.attack_blocker.utils.ChatUtils;
-import net.minecraft.command.CommandRegistryAccess;
+import net.minecraft.commands.CommandBuildContext;
 
 import java.util.Set;
 
 public class CantAttackCommand implements ClientCommandRegistrationCallback {
 
     @Override
-    public void register(CommandDispatcher<FabricClientCommandSource> commandDispatcher, CommandRegistryAccess commandRegistryAccess) {
-        commandDispatcher.register(ClientCommandManager.literal("attack-blocker")
+    public void register(CommandDispatcher<FabricClientCommandSource> commandDispatcher, CommandBuildContext commandBuildContext) {
+        commandDispatcher.register(ClientCommands.literal("attack-blocker")
 //                    Adding Players to Can't Attack list
-                .then(ClientCommandManager.literal("add").then(ClientCommandManager.argument("player name", StringArgumentType.word()).suggests(new CommandSuggestions.NetworkSuggestions()).executes(context -> addCantAttack(context.getSource(), StringArgumentType.getString(context, "player name")))))
+                .then(ClientCommands.literal("add").then(ClientCommands.argument("player name", StringArgumentType.word()).suggests(new CommandSuggestions.NetworkSuggestions()).executes(context -> addCantAttack(context.getSource(), StringArgumentType.getString(context, "player name")))))
 //                    Removing Players from Can't Attack List
-                .then(ClientCommandManager.literal("remove").then(ClientCommandManager.argument("player name", StringArgumentType.word()).suggests(new CommandSuggestions.PlayerSuggestions()).executes(context -> removeCantAttack(context.getSource(), StringArgumentType.getString(context, "player name")))))
+                .then(ClientCommands.literal("remove").then(ClientCommands.argument("player name", StringArgumentType.word()).suggests(new CommandSuggestions.PlayerSuggestions()).executes(context -> removeCantAttack(context.getSource(), StringArgumentType.getString(context, "player name")))))
 //                    Color Command
-                .then(ClientCommandManager.literal("color").then(ClientCommandManager.argument("player name", StringArgumentType.word()).suggests(new CommandSuggestions.PlayerSuggestions()).then(ClientCommandManager.argument("color", StringArgumentType.word()).suggests(new CommandSuggestions.ColorSuggestions()).executes(context -> setColor(context.getSource(), StringArgumentType.getString(context, "player name"), StringArgumentType.getString(context, "color"))))))
+                .then(ClientCommands.literal("color").then(ClientCommands.argument("player name", StringArgumentType.word()).suggests(new CommandSuggestions.PlayerSuggestions()).then(ClientCommands.argument("color", StringArgumentType.word()).suggests(new CommandSuggestions.ColorSuggestions()).executes(context -> setColor(context.getSource(), StringArgumentType.getString(context, "player name"), StringArgumentType.getString(context, "color"))))))
 //                    Show Players on list Command
-                .then(ClientCommandManager.literal("list").executes(context -> showCantAttackList(context.getSource())))
+                .then(ClientCommands.literal("list").executes(context -> showCantAttackList(context.getSource())))
 //                    On\Off Command
-                .then(ClientCommandManager.literal("on").executes(context -> setEnabled(context.getSource(), true))).then(ClientCommandManager.literal("off").executes(context -> setEnabled(context.getSource(), false))));
+                .then(ClientCommands.literal("on").executes(context -> setEnabled(context.getSource(), true))).then(ClientCommands.literal("off").executes(context -> setEnabled(context.getSource(), false))));
     }
 
     private static int addCantAttack(FabricClientCommandSource source, String playerName) {

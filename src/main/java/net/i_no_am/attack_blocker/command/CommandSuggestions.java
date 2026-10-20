@@ -6,7 +6,7 @@ import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.i_no_am.attack_blocker.config.Config;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -38,10 +38,10 @@ public class CommandSuggestions {
         @Override
         public CompletableFuture<Suggestions> getSuggestions(CommandContext<FabricClientCommandSource> context, SuggestionsBuilder builder) {
 
-            var handler = MinecraftClient.getInstance().getNetworkHandler();
+            var handler = Minecraft.getInstance().getConnection();
             if (handler == null) return builder.buildFuture();
 
-            handler.getPlayerList().forEach(entry -> builder.suggest(entry.getProfile().name()));
+            handler.getOnlinePlayers().forEach(entry -> builder.suggest(entry.getProfile().name()));
 
             return builder.buildFuture();
         }
